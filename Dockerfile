@@ -122,4 +122,3 @@ COPY --from=argocd /usr/local/bin/argocd /usr/local/bin
 COPY --from=go /usr/local/bin/go /usr/local/bin
 COPY --from=go /usr/local/bin/gofmt /usr/local/bin
 COPY --from=hugo /usr/local/bin/hugo /usr/local/bin
-COPY --from=vojtechmares/statica:stable /statica /usr/local/bin
