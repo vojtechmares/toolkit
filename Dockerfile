@@ -95,7 +95,7 @@ ENV HUGO_VERSION=0.101.0
 RUN curl -fsSLO https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz \
   && mv hugo_${HUGO_VERSION}_Linux-64bit.tar.gz hugo.tar.gz \
   && tar xzvf hugo.tar.gz \
-  && mv hugo/hugo /usr/local/bin \
+  && mv hugo /usr/local/bin \
   && chmod +x /usr/local/bin/hugo \
   && rm -r hugo.tar.gz
 
