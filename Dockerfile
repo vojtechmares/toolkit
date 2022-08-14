@@ -1,7 +1,7 @@
 FROM ubuntu:20.04 as base
 
 # curl wget jq make git
-RUN apt-get update && \
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
   apt-get install -y --no-install-recommends \
   ca-certificates \
   openssh-client sshpass \
