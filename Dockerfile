@@ -1,6 +1,9 @@
 FROM ubuntu:20.04 as base
 
-RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get update && \
+ENV TZ=Etc/UTC
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
   apt-get install -y --no-install-recommends \
   ca-certificates \
   openssh-client sshpass \
