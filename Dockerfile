@@ -92,8 +92,12 @@ RUN curl -fsSLO https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz \
 # hugo
 FROM base as hugo
 ENV HUGO_VERSION=0.101.0
-RUN curl -fsSLO https://github.com/gohugoio/hugo/releases/download/v0.101.0/hugo_0.101.0_Linux-64bit.tar.gz -o /usr/local/bin/hugo \
-  && chmod +x /usr/local/bin/hugo
+RUN curl -fsSLO https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz \
+  && mv hugo_${HUGO_VERSION}_Linux-64bit.tar.gz hugo.tar.gz \
+  && tar xzvf hugo.tar.gz \
+  && mv hugo/hugo /usr/local/bin \
+  && chmod +x /usr/local/bin/hugo \
+  && rm -r hugo.tar.gz
 
 # Final Image
 FROM base
