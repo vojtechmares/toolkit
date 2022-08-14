@@ -82,8 +82,11 @@ ENV GO_VERSION=1.19
 RUN curl -fsSLO https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz \
   && mv go${GO_VERSION}.linux-amd64.tar.gz go.tar.gz \
   && tar xzvf go.tar.gz \
-  && mv go/go /usr/local/bin/go \
+  && mv go/bin/go /usr/local/bin/go \
+  && mv go/bin/gofmt /usr/local/bin/gofmt \
   && chmod +x /usr/local/bin/go \
+  && chmod +x /usr/local/bin/gofmt \
+  && rm -r go \
   && rm -r go.tar.gz
 
 # hugo
@@ -113,5 +116,6 @@ COPY --from=vault /usr/local/bin/vault /usr/local/bin
 COPY --from=doctl /usr/local/bin/doctl /usr/local/bin
 COPY --from=argocd /usr/local/bin/argocd /usr/local/bin
 COPY --from=go /usr/local/bin/go /usr/local/bin
+COPY --from=go /usr/local/bin/gofmt /usr/local/bin
 COPY --from=hugo /usr/local/bin/hugo /usr/local/bin
 COPY --from=vojtechmares/statica:stable /statica /usr/local/bin
