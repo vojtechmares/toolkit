@@ -1,5 +1,7 @@
 FROM ubuntu:20.04 as base
 
+ENV TZ=Etc/UTC
+
 # curl wget jq make git
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
   apt-get install -y --no-install-recommends \
