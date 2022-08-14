@@ -1,5 +1,5 @@
 default:
-  image: docker:stable
+  image: registry.mareshq.com/mareshq/ci-toolkit:latest
 
 stages:
   - build
