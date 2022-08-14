@@ -82,8 +82,8 @@ ENV GO_VERSION=1.19
 RUN curl -fsSLO https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz \
   && mv go${GO_VERSION}.linux-amd64.tar.gz go.tar.gz \
   && tar xzvf go.tar.gz \
-  && mv go/bin/go /usr/local/bin/go \
-  && mv go/bin/gofmt /usr/local/bin/gofmt \
+  && mv go/bin/go /usr/local/bin \
+  && mv go/bin/gofmt /usr/local/bin \
   && chmod +x /usr/local/bin/go \
   && chmod +x /usr/local/bin/gofmt \
   && rm -r go \
