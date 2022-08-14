@@ -1,0 +1,27 @@
+default:
+  image: docker:stable
+
+stages:
+  - build
+
+build:
+  stage: build
+  before_script:
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+    - docker info
+  script:
+    - docker build -t $CI_REGISTRY_IMAGE:latest .
+    - docker push $CI_REGISTRY_IMAGE:latest
+  rules:
+    - if: $CI_PIPELINE_SOURCE != "schedule"
+
+build:nightly:
+  stage: build
+  before_script:
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+    - docker info
+  script:
+    - docker build -t $CI_REGISTRY_IMAGE:nightly .
+    - docker push $CI_REGISTRY_IMAGE:nightly
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
