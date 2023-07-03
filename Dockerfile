@@ -64,13 +64,13 @@ RUN curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-${
 
 # docker compose
 FROM base as docker_compose
-ENV DOCKER_COMPOSE_VERSION=1.26.2
+ENV DOCKER_COMPOSE_VERSION=2.19.1
 RUN curl -L https://github.com/docker/compose/releases/download/$DOCKER_COMPOSE_VERSION/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose \
   && chmod +x /usr/local/bin/docker-compose
 
 # vault
 FROM base as vault
-ENV VAULT_VERSION=1.9.4
+ENV VAULT_VERSION=1.14.0
 RUN curl -fsSL https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip -o vault.zip \
   && unzip vault.zip \
   && mv vault /usr/local/bin \
