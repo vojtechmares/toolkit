@@ -103,7 +103,8 @@ RUN curl -fsSLO https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSI
 FROM base
 
 # Install aws cli v2
-RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-2.0.30.zip" -o "awscliv2.zip" && \
+ENV AWS_CLI_VERSION=2.12.6
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip" -o "awscliv2.zip" && \
   unzip -q awscliv2.zip && \
   ./aws/install && \
   rm -rf awscliv2.zip aws
