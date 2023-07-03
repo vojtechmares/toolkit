@@ -78,7 +78,7 @@ RUN curl -fsSL https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAU
 
 # go
 FROM base as go
-ENV GO_VERSION=1.19
+ENV GO_VERSION=1.20
 RUN curl -fsSLO https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz \
   && mv go${GO_VERSION}.linux-amd64.tar.gz go.tar.gz \
   && tar xzvf go.tar.gz \
