@@ -46,7 +46,7 @@ RUN curl -fsSL https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION/terra
 
 # doctl
 FROM base as doctl
-ENV DOCTL_VERSION=1.96.1
+ENV DOCTL_VERSION=1.99.0
 RUN curl -L https://github.com/digitalocean/doctl/releases/download/v${DOCTL_VERSION}/doctl-${DOCTL_VERSION}-linux-amd64.tar.gz | tar xz \
   && mv doctl /usr/local/bin
 
