@@ -72,7 +72,7 @@ RUN curl -L https://github.com/docker/compose/releases/download/$DOCKER_COMPOSE_
 
 # vault
 FROM base as vault
-ENV VAULT_VERSION=1.14.0
+ENV VAULT_VERSION=1.15.0
 RUN curl -fsSL https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip -o vault.zip \
   && unzip vault.zip \
   && mv vault /usr/local/bin \
