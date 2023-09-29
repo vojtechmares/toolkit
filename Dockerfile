@@ -17,6 +17,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
   moreutils \
   git \
   gnupg2 \
+  # podman, buildah and qemu-user-static for buildah multi-architecture builds
+  podman buildah qemu-user-static \
   # required by aws cli
   less groff && \
   rm -rf /var/lib/apt/lists/* && \
