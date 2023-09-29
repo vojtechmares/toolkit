@@ -52,7 +52,8 @@ RUN curl -L https://github.com/digitalocean/doctl/releases/download/v${DOCTL_VER
 
 # argocd
 FROM base as argocd
-RUN curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64 \
+ENV ARGOCD_VERSION=2.8.4
+RUN curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/v${ARGOCD_VERSION}/download/argocd-linux-amd64 \
   && chmod +x /usr/local/bin/argocd
 
 # docker
@@ -105,7 +106,7 @@ RUN curl -fsSLO https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSI
 FROM base
 
 # Install aws cli v2
-ENV AWS_CLI_VERSION=2.12.6
+ENV AWS_CLI_VERSION=2.13.21
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip" -o "awscliv2.zip" && \
   unzip -q awscliv2.zip && \
   ./aws/install && \
