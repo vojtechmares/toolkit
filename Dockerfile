@@ -66,7 +66,7 @@ RUN curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-${
 
 # docker compose
 FROM base as docker_compose
-ENV DOCKER_COMPOSE_VERSION=2.19.1
+ENV DOCKER_COMPOSE_VERSION=2.22.0
 RUN curl -L https://github.com/docker/compose/releases/download/$DOCKER_COMPOSE_VERSION/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose \
   && chmod +x /usr/local/bin/docker-compose
 
