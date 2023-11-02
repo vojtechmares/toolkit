@@ -58,7 +58,7 @@ RUN curl -L https://github.com/digitalocean/doctl/releases/download/v${DOCTL_VER
 # argocd
 FROM base as argocd
 ENV ARGOCD_VERSION=2.8.4
-RUN curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/v${ARGOCD_VERSION}/download/argocd-linux-amd64 \
+RUN curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/v${ARGOCD_VERSION}/download/argocd-linux-amd64 -o /usr/local/bin/argocd \
   && chmod +x /usr/local/bin/argocd
 
 # docker
