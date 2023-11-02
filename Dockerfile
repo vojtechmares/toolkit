@@ -102,6 +102,14 @@ RUN curl -fsSLO https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSI
   && chmod +x /usr/local/bin/hugo \
   && rm -r hugo.tar.gz
 
+# tailwindcss
+# See: https://tailwindcss.com/blog/standalone-cli
+FROM base as tailwindcss
+ENV TAILWINDCSS_VERSION=3.3.5
+curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/v${TAILWINDCSS_VERSION}/download/tailwindcss-linux-x64 \
+  && mv tailwindcss-linux-x64 /usr/local/bin/tailwindcss \
+  && chmod +x /usr/local/bin/tailwindcss \
+
 # Final Image
 FROM base
 
@@ -126,3 +134,4 @@ COPY --from=argocd /usr/local/bin/argocd /usr/local/bin
 COPY --from=go /usr/local/bin/go /usr/local/bin
 COPY --from=go /usr/local/bin/gofmt /usr/local/bin
 COPY --from=hugo /usr/local/bin/hugo /usr/local/bin
+COPY --from=tailwindcss /usr/local/bin/tailwindcss /usr/local/bin
