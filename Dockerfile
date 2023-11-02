@@ -49,8 +49,11 @@ RUN curl -fsSL https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION/terra
 # doctl
 FROM base as doctl
 ENV DOCTL_VERSION=1.99.0
-RUN curl -L https://github.com/digitalocean/doctl/releases/download/v${DOCTL_VERSION}/doctl-${DOCTL_VERSION}-linux-amd64.tar.gz | tar xz \
-  && mv doctl /usr/local/bin
+RUN curl -L https://github.com/digitalocean/doctl/releases/download/v${DOCTL_VERSION}/doctl-${DOCTL_VERSION}-linux-amd64.tar.gz -o doctl.tar.gz \
+  && tar xzvf doctl.tar.gz \
+  && mv doctl /usr/local/bin \
+  && chmod +x /usr/local/bin/doctl \
+  && rm -r doctl.tar.gz
 
 # argocd
 FROM base as argocd
