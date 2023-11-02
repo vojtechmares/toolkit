@@ -64,8 +64,7 @@ RUN curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/relea
 # docker
 FROM base as docker
 ENV DOCKER_VERSION=24.0.6
-RUN curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz \
-  && mv docker-${DOCKER_VERSION}.tgz docker.tgz \
+RUN curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz -o docker.tar.gz \
   && tar xzvf docker.tgz \
   && mv docker/docker /usr/local/bin \
   && rm -r docker docker.tgz
