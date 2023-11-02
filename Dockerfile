@@ -106,9 +106,8 @@ RUN curl -fsSLO https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSI
 # See: https://tailwindcss.com/blog/standalone-cli
 FROM base as tailwindcss
 ENV TAILWINDCSS_VERSION=3.3.5
-curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/v${TAILWINDCSS_VERSION}/download/tailwindcss-linux-x64 \
-  && mv tailwindcss-linux-x64 /usr/local/bin/tailwindcss \
-  && chmod +x /usr/local/bin/tailwindcss \
+curl -fsSLO https://github.com/tailwindlabs/tailwindcss/releases/v${TAILWINDCSS_VERSION}/download/tailwindcss-linux-x64 -o /usr/local/bin/tailwindcss \
+  && chmod +x /usr/local/bin/tailwindcss
 
 # Final Image
 FROM base
