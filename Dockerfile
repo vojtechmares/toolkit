@@ -49,7 +49,7 @@ RUN curl -fsSL https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION/terra
 # doctl
 FROM base as doctl
 ENV DOCTL_VERSION=1.99.0
-RUN curl -L https://github.com/digitalocean/doctl/releases/download/v${DOCTL_VERSION}/doctl-${DOCTL_VERSION}-linux-amd64.tar.gz -o doctl.tar.gz \
+RUN curl -fsSL https://github.com/digitalocean/doctl/releases/download/v${DOCTL_VERSION}/doctl-${DOCTL_VERSION}-linux-amd64.tar.gz -o doctl.tar.gz \
   && tar xzvf doctl.tar.gz \
   && mv doctl /usr/local/bin \
   && chmod +x /usr/local/bin/doctl \
@@ -58,13 +58,13 @@ RUN curl -L https://github.com/digitalocean/doctl/releases/download/v${DOCTL_VER
 # argocd
 FROM base as argocd
 ENV ARGOCD_VERSION=2.8.4
-RUN curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/v${ARGOCD_VERSION}/download/argocd-linux-amd64 -o /usr/local/bin/argocd \
+RUN curl -fsSL https://github.com/argoproj/argo-cd/releases/v${ARGOCD_VERSION}/download/argocd-linux-amd64 -o /usr/local/bin/argocd \
   && chmod +x /usr/local/bin/argocd
 
 # docker
 FROM base as docker
 ENV DOCKER_VERSION=24.0.6
-RUN curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz -o docker.tar.gz \
+RUN curl -fsSL https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz -o docker.tar.gz \
   && tar xzvf docker.tgz \
   && mv docker/docker /usr/local/bin \
   && rm -r docker docker.tgz
@@ -72,7 +72,7 @@ RUN curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-${
 # docker compose
 FROM base as docker_compose
 ENV DOCKER_COMPOSE_VERSION=2.22.0
-RUN curl -L https://github.com/docker/compose/releases/download/$DOCKER_COMPOSE_VERSION/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose \
+RUN curl -fsSL https://github.com/docker/compose/releases/download/$DOCKER_COMPOSE_VERSION/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose \
   && chmod +x /usr/local/bin/docker-compose
 
 # vault
@@ -86,8 +86,7 @@ RUN curl -fsSL https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAU
 # go
 FROM base as go
 ENV GO_VERSION=1.21.1
-RUN curl -fsSLO https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz \
-  && mv go${GO_VERSION}.linux-amd64.tar.gz go.tar.gz \
+RUN curl -fsSL https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz -o go.tar.gz \
   && tar xzvf go.tar.gz \
   && mv go/bin/go /usr/local/bin \
   && mv go/bin/gofmt /usr/local/bin \
@@ -99,8 +98,7 @@ RUN curl -fsSLO https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz \
 # hugo
 FROM base as hugo
 ENV HUGO_VERSION=0.119.0
-RUN curl -fsSLO https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz \
-  && mv hugo_${HUGO_VERSION}_Linux-64bit.tar.gz hugo.tar.gz \
+RUN curl -fsSL https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz -o hugo.tar.gz \
   && tar xzvf hugo.tar.gz \
   && mv hugo /usr/local/bin \
   && chmod +x /usr/local/bin/hugo \
@@ -110,7 +108,7 @@ RUN curl -fsSLO https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSI
 # See: https://tailwindcss.com/blog/standalone-cli
 FROM base as tailwindcss
 ENV TAILWINDCSS_VERSION=3.3.5
-RUN curl -fsSLO https://github.com/tailwindlabs/tailwindcss/releases/download/v${TAILWINDCSS_VERSION}/tailwindcss-linux-x64 -o /usr/local/bin/tailwindcss \
+RUN curl -fsSL https://github.com/tailwindlabs/tailwindcss/releases/download/v${TAILWINDCSS_VERSION}/tailwindcss-linux-x64 -o /usr/local/bin/tailwindcss \
   && chmod +x /usr/local/bin/tailwindcss
 
 # Final Image
